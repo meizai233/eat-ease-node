@@ -5,15 +5,23 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
+    "start": "NODE_ENV=production nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "suda",
   "license": "ISC",
   "dependencies": {
+    "config-lite": "^4.0.0",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "formidable": "^3.5.1",
-    "mongodb": "^6.8.0"
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/preset-env": "^7.24.8",
+    "@babel/register": "^7.24.6"
   }
 }

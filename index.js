@@ -1,3 +1,3 @@
-// 为什么要引入这个包 待办
-// require("babel-core/register");
+// require 钩子会将自己绑定到节点的 require 并自动动态编译文件。
+require("@babel/register");
 require("./app.js");
