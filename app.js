@@ -1,13 +1,15 @@
 import express from "express";
 import db from "./mongodb/db.js";
-import configLite from "config-lite";
-import router from "./routes/index.js";
+import winston from "winston";
+import { setHooks } from "./lib/utils";
+import getConfig from "./lib/hooks/get-config.js";
+// 启动项目的hooks
+const hooks = ["header", "static", "flash", "session", "log", "routes"];
 
 const app = express();
+getConfig(app);
 
-app.use(express.static("./public"));
-const config = configLite(__dirname).default;
+// 获取所有hooks
+setHooks(app, hooks);
 
-router(app);
-
-app.listen(config.port);
+app.listen(app.config.port);
