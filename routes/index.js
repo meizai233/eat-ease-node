@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path"); // 感觉这个模块应该暴露出所有routes 集中暴露
+import fs from "fs";
+import path from "path";
 
 // 导入模块
 function importModule(dir, filename) {
@@ -8,7 +8,7 @@ function importModule(dir, filename) {
     // 动态导入模块
     try {
       const importedModule = require(filePath);
-      resolve(importedModule);
+      resolve(importedModule.default);
     } catch (err) {
       reject(err);
     }

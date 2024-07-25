@@ -32,6 +32,7 @@
   "_moduleAliases": {
     "@root": ".",
     "@routes": "./routes",
-    "@lib": "./lib"
+    "@lib": "./lib",
+    "@mid": "middlewares"
   }
 }
