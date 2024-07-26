@@ -33,6 +33,8 @@
     "@root": ".",
     "@routes": "./routes",
     "@lib": "./lib",
-    "@mid": "middlewares"
+    "@mid": "./middlewares",
+    "@models": "./models",
+    "@controller": "./controller"
   }
 }

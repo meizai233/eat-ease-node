@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import configLite from "config-lite";
 // 连接数据库
 const config = configLite(__dirname).default;
-mongoose.connect(config.url);
+mongoose.connect(config.url, { dbName: config.dbName });
 // 啥意思
 // mongoose.Promise = global.Promise;
 
