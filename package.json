@@ -11,6 +11,7 @@
   "author": "suda",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.2",
     "config-lite": "^4.0.0",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^5.1.0",
@@ -22,6 +23,7 @@
     "module-alias": "^2.2.3",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.1",
+    "pinyin": "^4.0.0-alpha.2",
     "winston": "^3.13.1"
   },
   "devDependencies": {
@@ -35,6 +37,7 @@
     "@lib": "./lib",
     "@mid": "./middlewares",
     "@models": "./models",
-    "@controller": "./controller"
+    "@controller": "./controller",
+    "@api": "./api"
   }
 }

@@ -1,7 +1,7 @@
 "use strict";
 import Cities from "@models/v1/cities";
-import http from "http";
-
+import { getIpLocation } from "@api/common";
+import pinyin from "pinyin";
 // 为什么控制器是controller
 class CityHandle {
   constructor() {
@@ -21,9 +21,7 @@ class CityHandle {
     switch (type) {
       case "guess":
         const city = await this.getCityName(req);
-        console.log("citttt", city);
-
-        cityInfo = await Cities.cityGuess("shanghai");
+        cityInfo = await Cities.cityGuess(city);
         break;
       case "hot":
         cityInfo = await Cities.cityHot();
@@ -40,30 +38,14 @@ class CityHandle {
     let ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
     const ipArr = ip.split(":")[2];
     ip = ipArr[ipArr.length - 1];
-    console.log(ip);
-    ip = "116.231.55.195";
-    //调用新浪接口
-    http.get("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js&ip=" + ip, (req, res) => {
-      let data;
-      req.on("data", (res) => {
-        debugger;
-        res = res.toString();
-        const subIndex = res.indexOf("city");
-        data = res.substring(subIndex, res.indexOf(",", subIndex));
-        data = data.split(":")[1].replace(/"/gi, "");
-      });
-      req.on("end", () => {
-        data = unescape(data.replace(/\\u/g, "%u"));
-        data = pinyin(data, {
-          style: pinyin.STYLE_NORMAL,
-        });
-        let city = "";
-        data.forEach((item) => {
-          city += item[0];
-        });
-        resolve(city);
-      });
-    });
+    //调用阿里云接口
+    const res = await getIpLocation({ ip });
+    let { city } = res?.data?.result?.ad_info;
+    return pinyin(city, {
+      style: pinyin.STYLE_NORMAL,
+    })
+      .slice(0, -1)
+      .join("");
   }
 }
 
