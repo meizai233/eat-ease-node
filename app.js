@@ -3,7 +3,8 @@ import db from "./mongodb/db.js";
 import { setHooks } from "./lib/utils";
 import getConfig from "./lib/hooks/get-config.js";
 // 启动项目的hooks
-const hooks = ["header", "static", "session", "flash", "log", "routes", "error"];
+// "log",
+const hooks = ["header", "static", "session", "flash", "routes", "error"];
 
 const app = express();
 getConfig(app);
