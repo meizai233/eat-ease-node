@@ -57,7 +57,9 @@ class CityHandle {
   async getCityName(req) {
     let ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
     console.log("ippp", ip);
-    ip = "::ffff:36.111.36.146";
+    if (process.env.NODE_ENV == "development") {
+      ip = "::ffff:36.111.36.146";
+    }
     ip = ip.split(":")[3];
 
     //调用阿里云接口
