@@ -37,3 +37,12 @@ export const getIpLocation = async (params) =>
   await alicloudapi.get("/lundear/qryip", {
     params,
   });
+
+export const getSpecificLocation = async (params) =>
+  await axios.get("https://apis.map.qq.com/ws/place/v1/suggestion", {
+    params: {
+      key: "YGHBZ-TXOE4-U7FUP-FIZ7G-P62O5-XXBLW",
+      ...params,
+      page_size: 10,
+    },
+  });

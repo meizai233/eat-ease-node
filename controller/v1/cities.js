@@ -5,10 +5,10 @@ import pinyin from "pinyin";
 // 为什么控制器是controller
 class CityHandle {
   constructor() {
-    this.cityGuess = this.cityGuess.bind(this);
+    this.getCity = this.getCity.bind(this);
   }
 
-  async cityGuess(req, res, next) {
+  async getCity(req, res, next) {
     const type = req.query.type;
     if (!type) {
       res.json({
@@ -29,15 +29,35 @@ class CityHandle {
       case "group":
         cityInfo = await Cities.cityGroup();
         break;
+      default:
+        res.json({
+          name: "ERROR_QUERY_TYPE",
+          message: "参数错误",
+        });
+        return;
     }
 
+    res.send(cityInfo);
+  }
+
+  async getCityById(req, res, next) {
+    const cityid = req.params.id;
+    if (isNaN(cityid)) {
+      res.json({
+        name: "ERROR_PARAM_TYPE",
+        message: "参数错误",
+      });
+      return;
+    }
+    // 业务逻辑 并控制数据模型
+    const cityInfo = await Cities.getCityById(cityid);
     res.send(cityInfo);
   }
 
   async getCityName(req) {
     let ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
     console.log("ippp", ip);
-    // ip = "::ffff:36.111.36.146";
+    ip = "::ffff:36.111.36.146";
     ip = ip.split(":")[3];
 
     //调用阿里云接口

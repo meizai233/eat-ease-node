@@ -19,16 +19,31 @@ citySchema.statics.cityGuess = async function (name) {
 
   Object.entries(city._doc.data).forEach((item) => {
     if (item[0] == firstWord) {
-      // 这是在干嘛
       item[1].forEach((cityItem) => {
         if (cityItem.pinyin == name) {
           cityInfo = cityItem;
         }
       });
     }
+
+    // 对于参数错误 如何统一处理？
+    // 对于查找数据失败 如何统一处理？
   });
 
   return cityInfo;
+};
+
+citySchema.statics.getCityById = async function (id) {
+  const city = await this.findOne();
+  for (const [, data] of Object.entries(city._doc.data)) {
+    if (data && Array.isArray(data)) {
+      const cityItem = data.find((cityItem) => cityItem.id == id);
+      if (cityItem) {
+        return cityItem;
+      }
+    }
+  }
+  return null; // 如果找不到匹配的城市，可以返回 null 或者适当的默认值
 };
 
 citySchema.statics.cityHot = function () {

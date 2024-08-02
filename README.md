@@ -8,4 +8,5 @@ express + ejs + nodeJs + mongodb Atlas
 ## 目标功能
 
 - [x] 获取所有城市列表
-- [ ]
+- [x] ip 定位
+- [x] 输入关键词，搜索地址
