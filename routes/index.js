@@ -18,6 +18,7 @@ function importModule(dir, filename) {
 const currentDir = __dirname;
 const routes = {};
 
+// 扫描routes目录下所有文件 作为一级路径
 async function loadModules() {
   try {
     const files = fs.readdirSync(currentDir);

@@ -26,8 +26,8 @@ citySchema.statics.cityGuess = async function (name) {
       });
     }
 
-    // 对于参数错误 如何统一处理？
-    // 对于查找数据失败 如何统一处理？
+    // 待办 对于参数错误 如何统一处理？
+    // 待办 对于查找数据失败 如何统一处理？
   });
 
   return cityInfo;

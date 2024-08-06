@@ -38,6 +38,7 @@
     "@mid": "./middlewares",
     "@models": "./models",
     "@controller": "./controller",
-    "@api": "./api"
+    "@api": "./api",
+    "@prototype": "./prototype"
   }
 }

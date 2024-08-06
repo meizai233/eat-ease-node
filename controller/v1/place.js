@@ -1,8 +1,11 @@
-import { getSpecificLocation } from "@api/common.js";
 import Cities from "@models/v1/cities";
+import AddressComponent from "@prototype/addressComponent";
 
-class SearchPlace {
-  constructor() {}
+class SearchPlace extends AddressComponent {
+  constructor() {
+    super();
+    this.search = this.search.bind(this);
+  }
 
   async search(req, res, next) {
     const { city_id, keyword } = req.query;
@@ -13,7 +16,7 @@ class SearchPlace {
         keyword: keyword,
         region: cityInfo.name,
       };
-      const resObj = await getSpecificLocation(params);
+      const resObj = await this.getSpecificLocation(params);
       const resArr = [];
       if (resObj.data.data) {
         resObj.data.data.forEach((item, index) => {
