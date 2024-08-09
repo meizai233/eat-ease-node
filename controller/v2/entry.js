@@ -1,22 +1,22 @@
-// import EntryModel from "@models/v2/entry";
+import EntryModel from "@models/v2/entry";
 
 class Entry {
   constructor() {}
 
   // 获取食品分类
   async getEntry(req, res, next) {
-    // try {
-    //   const entries = await EntryModel.find({}, "-_id");
-    //   res.send(entries);
-    // } catch (err) {
-    //   console.log("获取数据失败");
-    //   res.send({
-    //     status: 0,
-    //     type: "ERROR_DATA",
-    //     message: "获取数据失败",
-    //   });
-    //   return;
-    // }
+    try {
+      const entries = await EntryModel.find({}, "-_id");
+      res.send(entries);
+    } catch (err) {
+      console.log("获取数据失败");
+      res.send({
+        status: 0,
+        type: "ERROR_DATA",
+        message: "获取数据失败",
+      });
+      return;
+    }
   }
 }
 

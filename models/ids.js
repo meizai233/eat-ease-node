@@ -17,7 +17,7 @@ const idsSchema = new mongoose.Schema({
 
 const Ids = mongoose.model("Ids", idsSchema);
 
-Ids.findOne((err, data) => {
+Ids.findOne().then((data) => {
   if (!data) {
     const newIds = new Ids({
       restaurant_id: 0,
